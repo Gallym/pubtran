@@ -1,6 +1,8 @@
 package org.jguniverse.pidapplicationgm.repo.api
 
+import org.jguniverse.pidapplicationgm.repo.model.Position
 import org.jguniverse.pidapplicationgm.repo.model.Route
+import org.jguniverse.pidapplicationgm.repo.model.Shape
 import org.jguniverse.pidapplicationgm.repo.model.Vehicle
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -16,6 +18,15 @@ interface TripApi {
     // get vehicles for given trip
     @GET("/{id}/vehicles")
     fun getVehicles(@Path("id") id: Long) : Call<Set<Vehicle>>
+
+    // get geoshape i.e. set of geopoints to represent path(shape)
+    @GET("/{id}/shape")
+    fun getShape(@Path("id") id: Long) : Call<Shape>
+
+    // get current position
+    @GET("/{id}/position")
+    fun getPosition(@Path("id") id: Long) : Call<Position>
+
 
     companion object {
         var BASE_URL = "http://193.165.96.157:8080/api/trip"
